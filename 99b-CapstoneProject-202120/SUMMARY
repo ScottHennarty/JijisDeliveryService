@@ -2,7 +2,9 @@ In this file:
 
 1. Explain briefly what your project does and how it works.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     In our project we are going to have the character explore a small, pre-made map that has 3 "keys" the player needs
+     to find in order to bring back to the start in order to win. Throughout the map there are enemies who will chase
+     the player when they get within a certain radius of the player and if they catch the character you loose.
 
 2. List the names of the classes in your project,
    identifying who was the primary author for each.
