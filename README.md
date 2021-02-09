@@ -1,7 +1,7 @@
 Your copy of the projects material for CSSE 120 Introduction to Software Development.
   Department of Computer Science and Sofware Engineering,
   Rose-Hulman Institute of Technology.
-  Lead maintainer: Professor David Mutchler. Test
+  Lead maintainer: Professor David Mutchler.
 
 IMPORTANT: Please do NOT share ** SOLUTIONS ** to these projects
 anywhere that is publically available.
