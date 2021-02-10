@@ -4,6 +4,7 @@ import time
 import math
 from Cat import *
 from Dog import *
+# from Walls import *
 
 def main():
     pygame.init()
