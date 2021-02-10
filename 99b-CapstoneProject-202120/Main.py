@@ -1,7 +1,6 @@
 import pygame
 import sys
 import time
-import random
 import math
 
 class Dog:
@@ -34,7 +33,7 @@ class Dog:
 
 class Cat:
     def __init__(self, screen):
-        """ A dog will run towards the center unless he is a certain radius away from the center """
+        """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
         self.x = self.screen.get_width() // 2 - 50
         self.y = self.screen.get_height() // 2 - 50
