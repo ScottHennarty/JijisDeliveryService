@@ -11,7 +11,7 @@ def main():
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 600))
 
-    dog = Dog(screen, 0, 0)
+    dog = Dog(screen, 900, 0)
     cat = Cat(screen)
 
     clock = pygame.time.Clock()
