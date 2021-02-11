@@ -34,6 +34,8 @@ def main():
             dog.y = dog.y + cat.speed
         if pressed_keys[pygame.K_DOWN]:
             dog.y = dog.y - cat.speed
+        if pressed_keys[pygame.K_SPACE]:
+           main()
 
         dog.draw()
         cat.draw()

@@ -31,7 +31,7 @@ class Dog:
         self.radius = 400
         self.screen_width = screen.get_width()
         self.screen_height = screen.get_height()
-        self.speed = 3
+        self.speed = 2
 
     def draw(self):
         if self.magnitude <= self.radius:
