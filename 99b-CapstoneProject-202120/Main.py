@@ -2,7 +2,6 @@ import pygame
 import sys
 import time
 import math
-import random
 from Cat import *
 from Dog import *
 # from Walls import *
@@ -12,7 +11,7 @@ def main():
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 600))
 
-    dog = Dog(screen, random.randrange(50, 1000),random.randrange(200, 600))
+    dog = Dog(screen, 900, 0)
     cat = Cat(screen)
 
     clock = pygame.time.Clock()
@@ -35,8 +34,6 @@ def main():
             dog.y = dog.y + cat.speed
         if pressed_keys[pygame.K_DOWN]:
             dog.y = dog.y - cat.speed
-        if pressed_keys[pygame.K_SPACE]:
-           main()
 
         dog.draw()
         cat.draw()

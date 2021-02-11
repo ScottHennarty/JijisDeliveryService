@@ -9,6 +9,16 @@ class Dog:
         self.screen = screen
         self.x = x
         self.y = y
+        self.time = 0
+        self.time_delayer = 0
+        self.one_or_two = 0
+        self.radius = 400
+        self.screen_width = screen.get_width()
+        self.screen_height = screen.get_height()
+        self.speed = 1.5
+        self.images()
+
+    def images(self):
         self.standing_left_1 = pygame.image.load("New Perro/Dog_Left_Idle_1.png")
         self.standing_left_1_scaled = pygame.transform.scale(self.standing_left_1, (70, 65))
         self.standing_right_1 = pygame.image.load("New Perro/Dog_Right_Idle_1.png")
@@ -25,13 +35,19 @@ class Dog:
         self.right_run_2_scaled = pygame.transform.scale(self.right_run_2, (70, 65))
         self.right_run_3 = pygame.image.load("New Perro/Dog_Right_Walk_3.png")
         self.right_run_3_scaled = pygame.transform.scale(self.right_run_3, (70, 65))
-        self.time = 0
-        self.time_delayer = 0
-        self.one_or_two = 0
-        self.radius = 400
-        self.screen_width = screen.get_width()
-        self.screen_height = screen.get_height()
-        self.speed = 2
+        self.forward_1 = pygame.image.load("New Perro/Dog_Forward_1.png")
+        self.forward_1_scaled = pygame.transform.scale(self.forward_1, (60, 50))
+        self.forward_2 = pygame.image.load("New Perro/Dog_Forward_2.png")
+        self.forward_2_scaled = pygame.transform.scale(self.forward_2, (60, 50))
+        self.forward_3 = pygame.image.load("New Perro/Dog_Forward_3.png")
+        self.forward_3_scaled = pygame.transform.scale(self.forward_3, (60, 50))
+        self.backward_1 = pygame.image.load("New Perro/Dog_Backward_1.png")
+        self.backward_1_scaled = pygame.transform.scale(self.backward_1, (60, 50))
+        self.backward_2 = pygame.image.load("New Perro/Dog_Backward_2.png")
+        self.backward_2_scaled = pygame.transform.scale(self.backward_2, (60, 50))
+        self.backward_3 = pygame.image.load("New Perro/Dog_Backward_3.png")
+        self.backward_3_scaled = pygame.transform.scale(self.backward_3, (60, 50))
+
 
     def draw(self):
         if self.magnitude <= self.radius:
@@ -59,7 +75,31 @@ class Dog:
                     self.screen.blit(self.left_run_2_scaled, (self.x, self.y))
                     self.one_or_two = self.one_or_two + 1
                 self.time_delayer = self.time_delayer + 1
-            #Here I will be adding up and down animations in an else loop but I need to do other work right now
+            else:
+                if (self.screen_height // 2) - self.y - 25 > 0:
+                    if self.time_delayer % 11 == 0:
+                        self.time = self.time + 1
+                    if self.time % 2 == 0:
+                        if self.one_or_two % 2 == 0:
+                            self.screen.blit(self.forward_3_scaled, (self.x, self.y))
+                        else:
+                            self.screen.blit(self.forward_2_scaled, (self.x, self.y))
+                    else:
+                        self.screen.blit(self.forward_1_scaled, (self.x, self.y))
+                        self.one_or_two = self.one_or_two + 1
+                    self.time_delayer = self.time_delayer + 1
+                else:
+                    if self.time_delayer % 11 == 0:
+                        self.time = self.time + 1
+                    if self.time % 2 == 0:
+                        if self.one_or_two % 2 == 0:
+                            self.screen.blit(self.backward_3_scaled, (self.x, self.y))
+                        else:
+                            self.screen.blit(self.backward_2_scaled, (self.x, self.y))
+                    else:
+                        self.screen.blit(self.backward_1_scaled, (self.x, self.y))
+                        self.one_or_two = self.one_or_two + 1
+                    self.time_delayer = self.time_delayer + 1
         else:
             if (self.screen_width // 2) - self.x > 0:
                     self.screen.blit(self.standing_right_1_scaled, (self.x, self.y))
@@ -74,11 +114,11 @@ class Dog:
         distance_y = (self.screen_height // 2) - self.y - 45
         self.magnitude = math.sqrt(distance_x ** 2 + distance_y ** 2)
         if self.magnitude <= self.radius:
-            if distance_x > -1:
+            if distance_x > -5:
                 self.x = self.x + self.speed
-            if distance_x < 1:
+            if distance_x < 5:
                 self.x = self.x - self.speed
-            if distance_y > -1:
+            if distance_y > -5:
                 self.y = self.y + self.speed
-            if distance_y < 1:
+            if distance_y < 5:
                 self.y = self.y - self.speed
