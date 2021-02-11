@@ -48,25 +48,32 @@ class Cat:
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_RIGHT]:
             self.walk_right()
+            self.last_pressed = "Right"
             return
         if pressed_keys[pygame.K_LEFT]:
             self.walk_left()
+            self.last_pressed = "Left"
             return
         if pressed_keys[pygame.K_UP]:
-            if self.last_pressed == True:
-                self.walk_right()
-                return
-            else:
-                self.walk_left()
-                return
+            self.walk_backward()
+            self.last_pressed = "Up"
+            return
         if pressed_keys[pygame.K_DOWN]:
             self.walk_forward()
+            self.last_pressed = "Down"
             return
         else:
-            if self.last_pressed == True:
+            if self.last_pressed == "Right":
                 self.screen.blit(self.standing_right_1_scaled, (self.x, self.y))
-            else:
+                return
+            if self.last_pressed == "Left":
                 self.screen.blit(self.standing_left_1_scaled, (self.x, self.y))
+                return
+            if self.last_pressed == "Up":
+                self.screen.blit(self.backward_1_scaled, (self.x, self.y))
+                return
+            else:
+                self.screen.blit(self.forward_1_scaled, (self.x, self.y))
 
     def walk_right(self):
         if self.time_delayer % 5 == 0:
@@ -97,7 +104,7 @@ class Cat:
         self.last_pressed = False
 
     def walk_forward(self):
-        if self.time_delayer % 7 == 0:
+        if self.time_delayer % 9 == 0:
             self.time = self.time + 1
         if self.time % 2 == 0:
             if self.one_or_two % 2 == 0:
@@ -107,5 +114,18 @@ class Cat:
         else:
             self.screen.blit(self.forward_1_scaled, (self.x, self.y))
             self.one_or_two = self.one_or_two + 1
-            self.time_delayer = self.time_delayer + 1
-            return
+        self.time_delayer = self.time_delayer + 1
+
+    def walk_backward(self):
+        if self.time_delayer % 9 == 0:
+            self.time = self.time + 1
+        if self.time % 2 == 0:
+            if self.one_or_two % 2 == 0:
+                self.screen.blit(self.backward_2_scaled, (self.x, self.y))
+            else:
+                self.screen.blit(self.backward_3_scaled, (self.x, self.y))
+        else:
+            self.screen.blit(self.backward_1_scaled, (self.x, self.y))
+            self.one_or_two = self.one_or_two + 1
+        self.time_delayer = self.time_delayer + 1
+
