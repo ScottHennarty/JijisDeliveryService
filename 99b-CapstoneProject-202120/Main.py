@@ -12,8 +12,8 @@ def main():
     screen = pygame.display.set_mode((1000, 600))
 
     cat = Cat(screen)
-    wall = Walls(screen, 200, 200, 100, 200, (0, 255, 255), cat.speed)
-    dog = Dog(screen, 900, 0)
+    wall = Walls(screen, 200, 200, 100, 200, (88, 88, 88), cat.speed)
+    dog = Dog(screen, 700, 300)
 
     clock = pygame.time.Clock()
     while True:
@@ -25,16 +25,22 @@ def main():
 
         #The function here will set the cat speed depending on if the cat is
         #hitting a wall
-        if wall.x + wall.width > wall.screen_width // 2 - 50 and wall.y + (
-                    wall.height) > wall.screen_height // 2 - 40 and wall.y + (
-                    0) < wall.screen_height // 2 + 1 and wall.x < wall.screen_width // 2:
+        if wall.x + wall.width > wall.screen_width // 2 - 51 and wall.y + (
+                    wall.height) > wall.screen_height // 2 - 41 and wall.y + (
+                    0) < wall.screen_height // 2 and wall.x < wall.screen_width // 2:
             wall.x_speed_right = 0
             cat.speed_left = 0
         if wall.x < wall.screen_width // 2 + 10 and wall.y + (
-                    wall.height) > wall.screen_height // 2 - 40 and wall.y + (
-                    0) < wall.screen_height // 2 + 1 and wall.x + wall.width // 2 > wall.screen_width // 2:
+                    wall.height) > wall.screen_height // 2 - 39 and wall.y + (
+                    0) < wall.screen_height // 2 and wall.x + wall.width // 2 > wall.screen_width // 2:
             wall.x_speed_left = 0
             cat.speed_right = 0
+        if wall.y + wall.height > wall.screen_height // 2 - 45 and wall.x + wall.width > wall.screen_width // 2 - 50 and wall.x < wall.screen_width // 2 and wall.y - 5 < wall.screen_height // 2 + 1:
+            wall.y_speed_down = 0
+            cat.speed_down = 0
+        if wall.y + wall.height > wall.screen_height // 2 - 50 and wall.x + wall.width > wall.screen_width // 2 - 50 and wall.x < wall.screen_width // 2 and wall.y < wall.screen_height // 2:
+            wall.y_speed_up = 0
+            cat.speed_up = 0
 
 
         """This block should be for the Dog's movement"""
@@ -51,6 +57,8 @@ def main():
             dog.y = dog.y + cat.speed_up
         if pressed_keys[pygame.K_DOWN]:
             dog.y = dog.y - cat.speed_down
+        if pressed_keys[pygame.K_SPACE]:
+            main()
 
         dog.draw()
         wall.draw()

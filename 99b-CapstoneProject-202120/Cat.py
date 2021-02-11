@@ -29,7 +29,7 @@ class Cat:
         self.standing_left_1_scaled = pygame.transform.scale(self.standing_left_1, (65, 60))
         self.standing_right_1 = pygame.image.load("New Gato/Cat_Right_Idle_1.png")
         self.standing_right_1_scaled = pygame.transform.scale(self.standing_right_1, (65, 60))
-        self.left_run_1 = pygame.image.load("New Gato/Cat_Left_Walk_2.png")
+        self.left_run_1 = pygame.image.load("New Gato/Cat_Left_Walk_1.png")
         self.left_run_1_scaled = pygame.transform.scale(self.left_run_1, (65, 60))
         self.left_run_2 = pygame.image.load("New Gato/Cat_Left_Walk_2.png")
         self.left_run_2_scaled = pygame.transform.scale(self.left_run_2, (65, 60))
@@ -83,7 +83,7 @@ class Cat:
                 self.screen.blit(self.forward_1_scaled, (self.x, self.y))
 
     def walk_right(self):
-        if self.time_delayer % 5 == 0:
+        if self.time_delayer % 7 == 0:
             self.time = self.time + 1
         if self.time % 2 == 0:
             if self.one_or_two % 2 == 0:
@@ -97,7 +97,7 @@ class Cat:
         self.last_pressed = True
 
     def walk_left(self):
-        if self.time_delayer % 5 == 0:
+        if self.time_delayer % 7 == 0:
             self.time = self.time + 1
         if self.time % 2 == 0:
             if self.one_or_two % 2 == 0:
@@ -111,7 +111,7 @@ class Cat:
         self.last_pressed = False
 
     def walk_forward(self):
-        if self.time_delayer % 9 == 0:
+        if self.time_delayer % 7 == 0:
             self.time = self.time + 1
         if self.time % 2 == 0:
             if self.one_or_two % 2 == 0:
@@ -124,7 +124,7 @@ class Cat:
         self.time_delayer = self.time_delayer + 1
 
     def walk_backward(self):
-        if self.time_delayer % 9 == 0:
+        if self.time_delayer % 7 == 0:
             self.time = self.time + 1
         if self.time % 2 == 0:
             if self.one_or_two % 2 == 0:
