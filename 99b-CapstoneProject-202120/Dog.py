@@ -51,7 +51,7 @@ class Dog:
 
     def draw(self):
         if self.magnitude <= self.radius:
-            if (self.screen_width // 2) - self.x - 35 > 15:
+            if (self.screen_width // 2) - self.x - 35 > 60:
                 if self.time_delayer % 11 == 0:
                     self.time = self.time + 1
                 if self.time % 2 == 0:
@@ -63,7 +63,7 @@ class Dog:
                     self.screen.blit(self.right_run_2_scaled, (self.x, self.y))
                     self.one_or_two = self.one_or_two + 1
                 self.time_delayer = self.time_delayer + 1
-            elif(self.screen_width // 2) - self.x - 35 < -15:
+            elif(self.screen_width // 2) - self.x - 35 < -40:
                 if self.time_delayer % 11 == 0:
                     self.time = self.time + 1
                 if self.time % 2 == 0:
