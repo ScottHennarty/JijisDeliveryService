@@ -82,4 +82,5 @@ class Cat:
             self.screen.blit(self.standing_left_1_scaled, (self.x, self.y))
             self.one_or_two = self.one_or_two + 1
         self.time_delayer = self.time_delayer + 1
+        print("Your mom gay")
         self.last_pressed = False
