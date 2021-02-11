@@ -11,11 +11,18 @@ class Cat:
         self.x = self.screen.get_width() // 2 - 50
         self.y = self.screen.get_height() // 2 - 50
         self.speed = 3
+        self.speed_reset()
         self.last_pressed = True
         self.time = 0
         self.time_delayer = 0
         self.one_or_two = 0
         self.images()
+
+    def speed_reset(self):
+        self.speed_right = self.speed
+        self.speed_left = self.speed
+        self.speed_up = self.speed
+        self.speed_down = self.speed
 
     def images(self):
         self.standing_left_1 = pygame.image.load("New Gato/Cat_Left_Idle_1.png")
