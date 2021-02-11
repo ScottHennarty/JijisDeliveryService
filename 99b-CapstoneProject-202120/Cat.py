@@ -10,7 +10,7 @@ class Cat:
         self.screen = screen
         self.x = self.screen.get_width() // 2 - 50
         self.y = self.screen.get_height() // 2 - 50
-        self.standing_left_1 = pygame.image.load("Cat_Left_Idle_1.png")
+        self.standing_left_1 = pygame.image.load("New Gato/Cat_Left_Idle_1.png")
         self.standing_left_1_scaled = pygame.transform.scale(self.standing_left_1, (65, 60))
         self.standing_right_1 = pygame.image.load("New Gato/Cat_Right_Idle_1.png")
         self.standing_right_1_scaled = pygame.transform.scale(self.standing_right_1, (65, 60))
