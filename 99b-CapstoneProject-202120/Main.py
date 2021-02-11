@@ -41,6 +41,7 @@ def main():
         dog.move()
         wall.move()
 
+
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_RIGHT]:
             dog.x = dog.x - cat.speed_right
