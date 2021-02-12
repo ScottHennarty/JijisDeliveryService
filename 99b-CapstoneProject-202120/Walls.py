@@ -37,3 +37,4 @@ class Walls:
         if pressed_keys[pygame.K_DOWN]:
             self.y = self.y - self.y_speed_down
 
+

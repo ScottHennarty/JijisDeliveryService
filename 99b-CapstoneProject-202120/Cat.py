@@ -171,3 +171,4 @@ class Cat:
             pos_y = camera_pos[1]
             #
         return (pos_x, pos_y)
+
