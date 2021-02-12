@@ -70,10 +70,10 @@ def main():
                     cat.speed_right = 0
 
             if cat.x + cat.width >= wall.x and cat.x <= wall.x + wall.width:
-                if cat.y + cat.height + collision_offset >= wall.y:
+                if cat.y + cat.height + collision_offset >= wall.y and cat.y + 15 * collision_offset < wall.y + wall.height:
                     # wall.y_speed_down = 0
                     cat.speed_down = 0
-                if wall.y + wall.height >= cat.y - collision_offset:
+                if wall.y + wall.height >= cat.y - collision_offset and wall.y < cat.y + cat.height:
                     # wall.y_speed_up = 0
                     cat.speed_up = 0
 
@@ -86,10 +86,10 @@ def main():
                     dog.speed_right = 0
 
             if dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
-                if dog.y + dog.height + collision_offset >= wall.y:
+                if dog.y + dog.height + collision_offset >= wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
                     # wall.y_speed_down = 0
                     dog.speed_down = 0
-                if wall.y + wall.height >= dog.y - collision_offset:
+                if wall.y + wall.height >= dog.y - collision_offset and wall.y < dog.y + dog.height:
                     # wall.y_speed_up = 0
                     dog.speed_up = 0
             """This block should be for the Dog's movement"""
@@ -111,7 +111,7 @@ def main():
         # if pressed_keys[pygame.K_SPACE]:
         #     main()
 
-        dog.draw()
+        dog.draw(cat)
         cat.draw()
 
         # Reseting speed values

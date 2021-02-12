@@ -17,10 +17,6 @@ class Dog:
         self.screen_height = screen.get_height()
         self.speed = 1.5
         self.images()
-        self.speed_right = 0
-        self.speed_left = 0
-        self.speed_up = 0
-        self.speed_down = 0
         self.width = 70
         self.height = 65
 
@@ -61,9 +57,9 @@ class Dog:
         self.backward_3_scaled = pygame.transform.scale(self.backward_3, (60, 50))
 
 
-    def draw(self):
+    def draw(self, cat):
         if self.magnitude <= self.radius:
-            if (self.screen_width // 2) - self.x - 35 > 60:
+            if cat.x - self.x > 30:
                 if self.time_delayer % 11 == 0:
                     self.time = self.time + 1
                 if self.time % 2 == 0:
@@ -75,7 +71,7 @@ class Dog:
                     self.screen.blit(self.right_run_2_scaled, (self.x, self.y))
                     self.one_or_two = self.one_or_two + 1
                 self.time_delayer = self.time_delayer + 1
-            elif(self.screen_width // 2) - self.x - 35 < -40:
+            elif cat.x - self.x <= -30:
                 if self.time_delayer % 11 == 0:
                     self.time = self.time + 1
                 if self.time % 2 == 0:
@@ -88,7 +84,7 @@ class Dog:
                     self.one_or_two = self.one_or_two + 1
                 self.time_delayer = self.time_delayer + 1
             else:
-                if (self.screen_height // 2) - self.y - 25 > 0:
+                if cat.y - self.y > 0:
                     if self.time_delayer % 11 == 0:
                         self.time = self.time + 1
                     if self.time % 2 == 0:
@@ -112,8 +108,9 @@ class Dog:
                         self.screen.blit(self.backward_1_scaled, (self.x, self.y))
                         self.one_or_two = self.one_or_two + 1
                     self.time_delayer = self.time_delayer + 1
+            return
         else:
-            if (self.screen_width // 2) - self.x > 0:
+            if cat.x - self.x > 0:
                     self.screen.blit(self.standing_right_1_scaled, (self.x, self.y))
             else:
                     self.screen.blit(self.standing_left_1_scaled, (self.x, self.y))
@@ -134,6 +131,8 @@ class Dog:
                 self.y = self.y + self.speed_down
             if distance_y < 5:
                 self.y = self.y - self.speed_up
+
+
 
 
 
