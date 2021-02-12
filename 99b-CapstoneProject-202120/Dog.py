@@ -135,3 +135,5 @@ class Dog:
             if distance_y < 5:
                 self.y = self.y - self.speed_up
 
+
+
