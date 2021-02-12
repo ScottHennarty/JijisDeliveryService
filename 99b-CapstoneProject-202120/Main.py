@@ -9,12 +9,12 @@ from Walls import *
 def main():
     pygame.init()
     pygame.display.set_caption("Jiji's Delivery Service ")
-    screen = pygame.display.set_mode((1000, 600))
+    screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
     world = pygame.Surface((1000,1000))
 
     cat = Cat(world)
-    walls = [Walls(world, 200, 200, 50, 300, (88, 88, 88), cat.speed), Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
+    walls = [Walls(world, 200, 200, 100, 300, (88, 88, 88), cat.speed), Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
 
     dog = Dog(world, 700, 300)
 
