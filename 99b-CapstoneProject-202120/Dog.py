@@ -17,6 +17,18 @@ class Dog:
         self.screen_height = screen.get_height()
         self.speed = 1.5
         self.images()
+        self.speed_right = 0
+        self.speed_left = 0
+        self.speed_up = 0
+        self.speed_down = 0
+        self.width = 70
+        self.height = 65
+
+    def speed_reset(self):
+        self.speed_right = self.speed
+        self.speed_left = self.speed
+        self.speed_up = self.speed
+        self.speed_down = self.speed
 
     def images(self):
         self.standing_left_1 = pygame.image.load("New Perro/Dog_Left_Idle_1.png")
@@ -109,16 +121,16 @@ class Dog:
 
 
 
-    def move(self):
-        distance_x = (self.screen_width // 2) - self.x - 45
-        distance_y = (self.screen_height // 2) - self.y - 45
+    def move(self, cat):
+        distance_x = cat.x - self.x
+        distance_y = cat.y - self.y
         self.magnitude = math.sqrt(distance_x ** 2 + distance_y ** 2)
         if self.magnitude <= self.radius:
             if distance_x > -5:
-                self.x = self.x + self.speed
+                self.x = self.x + self.speed_right
             if distance_x < 5:
-                self.x = self.x - self.speed
+                self.x = self.x - self.speed_left
             if distance_y > -5:
-                self.y = self.y + self.speed
+                self.y = self.y + self.speed_down
             if distance_y < 5:
-                self.y = self.y - self.speed
+                self.y = self.y - self.speed_up

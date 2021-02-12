@@ -8,8 +8,10 @@ class Cat:
     def __init__(self, screen):
         """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
-        self.x = self.screen.get_width() // 2 - 50
-        self.y = self.screen.get_height() // 2 - 50
+        #self.x = self.screen.get_width() // 2 - 50
+        #self.y = self.screen.get_height() // 2 - 50
+        self.x = self.screen.get_width() // 2
+        self.y = self.screen.get_height() // 4
         self.speed = 3
         self.speed_reset()
         self.last_pressed = True
@@ -17,12 +19,18 @@ class Cat:
         self.time_delayer = 0
         self.one_or_two = 0
         self.images()
+        self.height = 60
+        self.width = 65
 
     def speed_reset(self):
-        self.speed_right = self.speed
-        self.speed_left = self.speed
-        self.speed_up = self.speed
-        self.speed_down = self.speed
+        # self.speed_right = self.speed
+        # self.speed_left = self.speed
+        # self.speed_up = self.speed
+        # self.speed_down = self.speed
+        self.speed_right = 0
+        self.speed_left = 0
+        self.speed_up = 0
+        self.speed_down = 0
 
     def images(self):
         self.standing_left_1 = pygame.image.load("New Gato/Cat_Left_Idle_1.png")
@@ -136,3 +144,30 @@ class Cat:
             self.one_or_two = self.one_or_two + 1
         self.time_delayer = self.time_delayer + 1
 
+    def move(self, camera_pos):
+        pos_x,pos_y = camera_pos
+
+        self.x += self.speed_right
+        pos_x -= self.speed_right
+        self.x -= self.speed_left
+        pos_x += self.speed_left
+
+        self.y -= self.speed_up
+        pos_y += self.speed_up
+        self.y += self.speed_down
+        pos_y -= self.speed_down
+
+        if self.x < 0:
+            self.x = 0
+            pos_x = camera_pos[0]
+        elif self.x > 984:
+            self.x = 984
+            pos_x = camera_pos[0]
+        if self.y < 0:
+            self.y = 0
+            pos_y = camera_pos[1]
+        elif self.y > 984:
+            self.y = 984
+            pos_y = camera_pos[1]
+            #
+        return (pos_x, pos_y)
