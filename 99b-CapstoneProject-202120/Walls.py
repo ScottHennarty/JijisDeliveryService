@@ -38,3 +38,4 @@ class Walls:
             self.y = self.y - self.y_speed_down
 
 
+
