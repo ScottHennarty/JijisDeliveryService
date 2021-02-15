@@ -18,6 +18,9 @@ def main():
     dog = Dog(world, 700, 200)
     walls = [Walls(world, 200, 200, 100, 300, (88, 88, 88), cat.speed),
              Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
+
+
+
     keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
             Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
             Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
