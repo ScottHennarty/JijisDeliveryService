@@ -53,28 +53,28 @@ def main():
 
         #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
-            if cat.y + cat.height > wall.y and cat.y + cat.height // 2 <= wall.y + wall.height:
-                if wall.x < cat.x + collision_offset and wall.x + wall.width >= cat.x - collision_offset:
+            if cat.y + cat.height >= wall.y and cat.y + cat.height // 2 <= wall.y + wall.height:
+                if wall.x < cat.x + collision_offset and wall.x + wall.width > cat.x - collision_offset:
                     cat.speed_left = 0
-                if wall.x + wall.width > cat.x - collision_offset and wall.x < cat.x + cat.width + collision_offset:
+                elif wall.x + wall.width > cat.x - collision_offset and wall.x < cat.x + cat.width + collision_offset:
                     cat.speed_right = 0
 
-            if cat.x + cat.width >= wall.x and cat.x <= wall.x + wall.width:
-                if cat.y + cat.height + collision_offset >= wall.y and cat.y + 15 * collision_offset < wall.y + wall.height:
+            elif cat.x + cat.width >= wall.x and cat.x <= wall.x + wall.width:
+                if cat.y + cat.height + collision_offset > wall.y and cat.y + 15 * collision_offset < wall.y + wall.height:
                     cat.speed_down = 0
-                if wall.y + wall.height >= cat.y - collision_offset and wall.y < cat.y + cat.height:
+                elif wall.y + wall.height > cat.y - collision_offset and wall.y < cat.y + cat.height:
                     cat.speed_up = 0
 
-            if dog.y + dog.height > wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
-                if wall.x < dog.x + collision_offset and wall.x + wall.width >= dog.x - collision_offset:
+            if dog.y + dog.height >= wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
+                if wall.x < dog.x + collision_offset and wall.x + wall.width > dog.x - collision_offset:
                     dog.speed_left = 0
-                if wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
+                elif wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
                     dog.speed_right = 0
 
-            if dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
-                if dog.y + dog.height + collision_offset >= wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
+            elif dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
+                if dog.y + dog.height + collision_offset > wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
                     dog.speed_down = 0
-                if wall.y + wall.height >= dog.y - collision_offset and wall.y < dog.y + cat.height:
+                elif wall.y + wall.height > dog.y - collision_offset and wall.y < dog.y + cat.height:
                     dog.speed_up = 0
             wall.draw()
 
