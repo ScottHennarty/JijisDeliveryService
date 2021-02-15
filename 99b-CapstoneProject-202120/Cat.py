@@ -28,6 +28,7 @@ class Cat:
         self.speed_up = 0
         self.speed_down = 0
 
+
     def images_sounds(self):
         self.standing_left_1 = pygame.image.load("New Gato/Cat_Left_Idle_1.png")
         self.standing_left_1_scaled = pygame.transform.scale(self.standing_left_1, (65, 60))
