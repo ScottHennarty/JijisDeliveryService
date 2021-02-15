@@ -4,10 +4,12 @@ import time
 import math
 
 
+
 class Cat:
-    def __init__(self, screen):
+    def __init__(self, screen, true_screen):
         """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
+        self.true_screen = true_screen
         self.x = self.screen.get_width() // 2
         self.y = self.screen.get_height() // 4
         self.speed = 3
@@ -16,7 +18,7 @@ class Cat:
         self.time = 0
         self.time_delayer = 0
         self.one_or_two = 0
-        self.images()
+        self.images_sounds()
         self.height = 60
         self.width = 65
 
@@ -26,7 +28,7 @@ class Cat:
         self.speed_up = 0
         self.speed_down = 0
 
-    def images(self):
+    def images_sounds(self):
         self.standing_left_1 = pygame.image.load("New Gato/Cat_Left_Idle_1.png")
         self.standing_left_1_scaled = pygame.transform.scale(self.standing_left_1, (65, 60))
         self.standing_right_1 = pygame.image.load("New Gato/Cat_Right_Idle_1.png")
@@ -39,7 +41,6 @@ class Cat:
         self.right_run_1_scaled = pygame.transform.scale(self.right_run_1, (65, 60))
         self.right_run_2 = pygame.image.load("New Gato/Cat_Right_Walk_2.png")
         self.right_run_2_scaled = pygame.transform.scale(self.right_run_2, (65, 60))
-
         self.forward_1 = pygame.image.load("New Gato/Cat_Forward_1.png")
         self.forward_1_scaled = pygame.transform.scale(self.forward_1, (60, 50))
         self.forward_2 = pygame.image.load("New Gato/Cat_Forward_2.png")
@@ -52,6 +53,9 @@ class Cat:
         self.backward_2_scaled = pygame.transform.scale(self.backward_2, (60, 50))
         self.backward_3 = pygame.image.load("New Gato/Cat_Backwards_3.png")
         self.backward_3_scaled = pygame.transform.scale(self.backward_3, (60, 50))
+        self.game_over =  pygame.image.load("Game Over.jpg")
+        self.game_over_scaled = pygame.transform.scale(self.game_over, (1000, 800))
+        self.game_over_sound = pygame.mixer.Sound("Sounds/Undertale Game Over Theme.wav")
 
     def draw(self):
         pressed_keys = pygame.key.get_pressed()
@@ -140,7 +144,7 @@ class Cat:
         self.time_delayer = self.time_delayer + 1
 
     def move(self, camera_pos):
-        pos_x,pos_y = camera_pos
+        pos_x, pos_y = camera_pos
 
         self.x += self.speed_right
         pos_x -= self.speed_right
@@ -165,6 +169,13 @@ class Cat:
             self.y = 984
             pos_y = camera_pos[1]
         return (pos_x, pos_y)
+
+    def lose(self):
+        self.true_screen.blit(self.game_over_scaled, (0, 0))
+        self.game_over_sound.play()
+        return True
+
+
 
 
 

@@ -6,6 +6,7 @@ from Cat import *
 from Dog import *
 from Walls import *
 from Keys import *
+from Stamina_Bar import *
 
 def main():
     pygame.init()
@@ -14,7 +15,7 @@ def main():
     clock = pygame.time.Clock()
     world = pygame.Surface((1000, 1000))
 
-    cat = Cat(world)
+    cat = Cat(world, screen)
     dog = Dog(world, 700, 200)
     walls = [Walls(world, 200, 200, 100, 300, (88, 88, 88), cat.speed),
              Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
@@ -24,6 +25,7 @@ def main():
     keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
             Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
             Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
+    stamina = Stamina(screen, 400, 40, 1)
 
     camera_pos = (0, 0)
 
@@ -90,9 +92,9 @@ def main():
 
         dog.move(cat)
         camera_pos = cat.move(camera_pos)
-
         dog.draw(cat)
         cat.draw()
+        stamina.drain()
 
         # Reseting speed values
         # pygame.display.update()
@@ -100,8 +102,17 @@ def main():
         dog.speed_reset()
 
         screen.blit(world, camera_pos)
+        stamina.draw()
+
+        # This checks to see if the player has lost
+        magnitude = math.sqrt((cat.x - dog.x) ** 2 + (cat.y - dog.y) ** 2)
+        if magnitude <= 40:
+            cont = cat.lose()
+            if cont == True:
+                screen.blit(cat.game_over_scaled, (0, 0))
 
         pygame.display.flip()
+
 
 
 main()
