@@ -17,7 +17,8 @@ def main():
 
     cat = Cat(world, screen)
     dog = Dog(world, 700, 200)
-    walls = [Walls(world, 200, 200, 100, 300, (88, 88, 88), cat.speed),
+    #(x,y,width,height,(color))
+    walls = [Walls(world, 0, 200, 100, 300, (88, 88, 88), cat.speed),
              Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
 
 
