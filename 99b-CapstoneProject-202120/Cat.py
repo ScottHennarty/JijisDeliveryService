@@ -10,8 +10,8 @@ class Cat:
         """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
         self.true_screen = true_screen
-        self.x = self.screen.get_width() // 2
-        self.y = self.screen.get_height() // 4
+        self.x = (self.screen.get_width() - 100) // 2 + 100
+        self.y = (self.screen.get_height() - 100) // 2 + 100
         self.speed = 3
         self.speed_reset()
         self.last_pressed = True
@@ -144,6 +144,7 @@ class Cat:
         self.time_delayer = self.time_delayer + 1
 
     def move(self, camera_pos):
+        print(self.x, self.y)
         pos_x, pos_y = camera_pos
 
         self.x += self.speed_right
@@ -156,18 +157,18 @@ class Cat:
         self.y += self.speed_down
         pos_y -= self.speed_down
 
-        if self.x < 0:
-            self.x = 0
-            pos_x = camera_pos[0]
-        elif self.x > 984:
-            self.x = 984
-            pos_x = camera_pos[0]
-        if self.y < 0:
-            self.y = 0
-            pos_y = camera_pos[1]
-        elif self.y > 984:
-            self.y = 984
-            pos_y = camera_pos[1]
+        # if self.x < 0:
+        #     self.x = 0
+        #     pos_x = camera_pos[0]
+        # elif self.x > 984:
+        #     self.x = 984
+        #     pos_x = camera_pos[0]
+        # if self.y < 0:
+        #     self.y = 0
+        #     pos_y = camera_pos[1]
+        # elif self.y > 984:
+        #     self.y = 984
+        #     pos_y = camera_pos[1]
         return (pos_x, pos_y)
 
     def lose(self):

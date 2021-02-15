@@ -8,31 +8,30 @@ from Walls import *
 from Keys import *
 from Stamina_Bar import *
 from Fish import *
+from Positions import *
 
 def main():
     pygame.init()
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
-    world = pygame.Surface((1000, 1000))
+    world = pygame.Surface((2600, 2600))
     game_over = False
-
+    screen_offset = 500
+    walking_space = 100
 
     cat = Cat(world, screen)
-    dogs = [Dog(world, 700, 200), Dog(world, 700, 50)]
+    positions = Positions(world, screen, screen_offset, walking_space, cat)
+    dogs = positions.dogs
     for dog in dogs:
         dog.speed_reset()
     #(x,y,width,height,(color))
-    walls = [Walls(world, 100, 200, 100, 300, (88, 88, 88), cat.speed),
-             Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
-    keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
-            Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
-            Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
-    fishes = [Fishes(world, 250, 450, 20), Fishes(world, 250, 500, 20),
-              Fishes(world, 250, 550, 20), Fishes(world, 250, 600, 20)]
+    walls = positions.walls
+    keys = positions.keys
+    fishes = positions.fishes
     stamina = Stamina(screen, 400, 40, 1)
 
-    camera_pos = (0, 0)
+    camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
 
     collision_offset = 5
 
