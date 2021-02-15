@@ -169,7 +169,7 @@ class Cat:
         elif self.y > 984:
             self.y = 984
             pos_y = camera_pos[1]
-            #
+
         return (pos_x, pos_y)
 
 
