@@ -10,8 +10,8 @@ class Cat:
         """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
         self.true_screen = true_screen
-        self.x = (self.screen.get_width() - 100) // 2 + 100
-        self.y = (self.screen.get_height() - 100) // 2 + 100
+        self.x = (self.screen.get_width() - 500) // 2 + 250
+        self.y = (self.screen.get_height() - 500) // 2 + 250
         self.speed = 3
         self.speed_reset()
         self.last_pressed = True

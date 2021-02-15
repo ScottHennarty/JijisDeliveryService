@@ -15,7 +15,7 @@ def main():
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
-    world = pygame.Surface((2600, 2600))
+    world = pygame.Surface((2500, 2500))
     game_over = False
     screen_offset = 500
     walking_space = 100
