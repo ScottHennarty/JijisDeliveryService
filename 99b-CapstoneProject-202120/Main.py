@@ -5,6 +5,7 @@ import math
 from Cat import *
 from Dog import *
 from Walls import *
+from Keys import *
 
 def main():
     pygame.init()
@@ -14,18 +15,12 @@ def main():
     world = pygame.Surface((1000, 1000))
 
     cat = Cat(world)
-    #(x, y, width, height, (color))
-    walls = [Walls(world, 0, 0, 300, 1000, (88, 88, 88), cat.speed),
-             Walls(world, 0, 0, 1000, 300, (88, 88, 88), cat.speed),
-             Walls(world, 1000, 0, 1000, 300, (88, 88, 88), cat.speed),
-             Walls(world, 800, 500, 50, 100, (88, 88, 88), cat.speed),
-             Walls(world, 300, 700, 50, 100, (88, 88, 88), cat.speed),
-             Walls(world, 400, 850, 50, 100, (88, 88, 88), cat.speed),
-             Walls(world, 700, 600, 50, 100, (88, 88, 88), cat.speed),
-             Walls(world, 500, 300, 50, 100, (88, 88, 88), cat.speed),
-             Walls(world, 1000, 500, 50, 100, (88, 88, 88), cat.speed)]
-
-    dog = Dog(world, 700, 300)
+    dog = Dog(world, 700, 200)
+    walls = [Walls(world, 200, 200, 100, 300, (88, 88, 88), cat.speed),
+             Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
+    keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
+            Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
+            Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
 
     camera_pos = (0, 0)
 
@@ -52,78 +47,51 @@ def main():
         if pressed_keys[pygame.K_SPACE]:
             main()
 
+
+        #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
-            # if wall.x + wall.width > wall.screen_width // 2 - 51 and wall.y + (
-            #             wall.height) > wall.screen_height // 2 - 41 and wall.y + (
-            #             0) < wall.screen_height // 2 and wall.x < wall.screen_width // 2:
-            #     #wall.x_speed_right = 0
-            #     cat.speed_left = 0
-            # if wall.x < wall.screen_width // 2 + 10 and wall.y + (
-            #             wall.height) > wall.screen_height // 2 - 39 and wall.y + (
-            #             0) < wall.screen_height // 2 and wall.x + wall.width // 2 > wall.screen_width // 2:
-            #     #wall.x_speed_left = 0
-            #     cat.speed_right = 0
-            # if wall.y + wall.height > wall.screen_height // 2 - 45 and wall.x + wall.width > wall.screen_width // 2 - 50 and wall.x < wall.screen_width // 2 and wall.y - 5 < wall.screen_height // 2 + 1:
-            #     #wall.y_speed_down = 0
-            #     cat.speed_down = 0
-            # if wall.y + wall.height > wall.screen_height // 2 - 50 and wall.x + wall.width > wall.screen_width // 2 - 50 and wall.x < wall.screen_width // 2 and wall.y < wall.screen_height // 2:
-            #     #wall.y_speed_up = 0
-            #     cat.speed_up = 0
-            if cat.y + cat.height >= wall.y and cat.y + cat.height // 2 <= wall.y + wall.height:
-                if wall.x < cat.x - collision_offset and wall.x + wall.width > cat.x + collision_offset:
-                    # wall.x_speed_right = 0
+            if cat.y + cat.height > wall.y and cat.y + cat.height // 2 <= wall.y + wall.height:
+                if wall.x < cat.x + collision_offset and wall.x + wall.width >= cat.x - collision_offset:
                     cat.speed_left = 0
-                elif wall.x + wall.width > cat.x + collision_offset and wall.x < cat.x + cat.width + collision_offset:
-                    # wall.x_speed_left = 0
+                if wall.x + wall.width > cat.x - collision_offset and wall.x < cat.x + cat.width + collision_offset:
                     cat.speed_right = 0
 
-            elif cat.x + cat.width >= wall.x and cat.x <= wall.x + wall.width:
-                if cat.y + cat.height + collision_offset > wall.y and cat.y + 15 * collision_offset < wall.y + wall.height:
-                    # wall.y_speed_down = 0
+            if cat.x + cat.width >= wall.x and cat.x <= wall.x + wall.width:
+                if cat.y + cat.height + collision_offset >= wall.y and cat.y + 15 * collision_offset < wall.y + wall.height:
                     cat.speed_down = 0
-                elif wall.y + wall.height > cat.y - collision_offset and wall.y < cat.y + cat.height:
-                    # wall.y_speed_up = 0
+                if wall.y + wall.height >= cat.y - collision_offset and wall.y < cat.y + cat.height:
                     cat.speed_up = 0
 
-            if dog.y + dog.height >= wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
-                if wall.x < dog.x + collision_offset and wall.x + wall.width > dog.x - collision_offset:
-                    # wall.x_speed_right = 0
+            if dog.y + dog.height > wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
+                if wall.x < dog.x + collision_offset and wall.x + wall.width >= dog.x - collision_offset:
                     dog.speed_left = 0
-                elif wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
-                    # wall.x_speed_left = 0
+                if wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
                     dog.speed_right = 0
 
-            elif dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
-                if dog.y + dog.height + collision_offset > wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
-                    # wall.y_speed_down = 0
+            if dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
+                if dog.y + dog.height + collision_offset >= wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
                     dog.speed_down = 0
-                elif wall.y + wall.height > dog.y - collision_offset and wall.y < dog.y + dog.height:
-                    # wall.y_speed_up = 0
+                if wall.y + wall.height >= dog.y - collision_offset and wall.y < dog.y + cat.height:
                     dog.speed_up = 0
-            """This block should be for the Dog's movement"""
             wall.draw()
+
+        #This will draw keys
+        counter = 0
+        for key in keys:
+            key.draw()
+            current = key.collect_key(cat)
+            if current == 1:
+                counter = counter + 1
+                if counter == 3:
+                    key.catch_em_all(dog)
 
         dog.move(cat)
         camera_pos = cat.move(camera_pos)
-        # wall.move()
-
-        # pressed_keys = pygame.key.get_pressed()
-        # if pressed_keys[pygame.K_RIGHT]:
-        #     dog.x = dog.x - cat.speed_right
-        # if pressed_keys[pygame.K_LEFT]:
-        #     dog.x = dog.x + cat.speed_left
-        # if pressed_keys[pygame.K_UP]:
-        #     dog.y = dog.y + cat.speed_up
-        # if pressed_keys[pygame.K_DOWN]:
-        #     dog.y = dog.y - cat.speed_down
-        # if pressed_keys[pygame.K_SPACE]:
-        #     main()
 
         dog.draw(cat)
         cat.draw()
 
         # Reseting speed values
-        # wall.speed_reset()
         # pygame.display.update()
         cat.speed_reset()
         dog.speed_reset()

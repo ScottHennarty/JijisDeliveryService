@@ -8,8 +8,6 @@ class Cat:
     def __init__(self, screen):
         """ The cat sets the speed and is place in the center of the screen """
         self.screen = screen
-        #self.x = self.screen.get_width() // 2 - 50
-        #self.y = self.screen.get_height() // 2 - 50
         self.x = self.screen.get_width() // 2
         self.y = self.screen.get_height() // 4
         self.speed = 3
@@ -23,10 +21,6 @@ class Cat:
         self.width = 65
 
     def speed_reset(self):
-        # self.speed_right = self.speed
-        # self.speed_left = self.speed
-        # self.speed_up = self.speed
-        # self.speed_down = self.speed
         self.speed_right = 0
         self.speed_left = 0
         self.speed_up = 0
@@ -61,6 +55,7 @@ class Cat:
 
     def draw(self):
         pressed_keys = pygame.key.get_pressed()
+        # print(self.x, self.y)
         if pressed_keys[pygame.K_RIGHT]:
             self.walk_right()
             self.last_pressed = "Right"
@@ -169,7 +164,6 @@ class Cat:
         elif self.y > 984:
             self.y = 984
             pos_y = camera_pos[1]
-
         return (pos_x, pos_y)
 
 
