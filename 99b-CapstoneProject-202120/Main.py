@@ -7,6 +7,7 @@ from Dog import *
 from Walls import *
 from Keys import *
 from Stamina_Bar import *
+from Fish import *
 
 def main():
     pygame.init()
@@ -18,14 +19,17 @@ def main():
 
 
     cat = Cat(world, screen)
-    dog = Dog(world, 700, 200)
-    dog.speed_reset()
+    dogs = [Dog(world, 700, 200), Dog(world, 700, 50)]
+    for dog in dogs:
+        dog.speed_reset()
     #(x,y,width,height,(color))
     walls = [Walls(world, 100, 200, 100, 300, (88, 88, 88), cat.speed),
              Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
     keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
             Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
             Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
+    fishes = [Fishes(world, 250, 450, 20), Fishes(world, 250, 500, 20),
+              Fishes(world, 250, 550, 20), Fishes(world, 250, 600, 20)]
     stamina = Stamina(screen, 400, 40, 1)
 
     camera_pos = (0, 0)
@@ -68,18 +72,28 @@ def main():
                 elif wall.y + wall.height > cat.y - collision_offset and wall.y < cat.y + cat.height:
                     cat.speed_up = 0
 
-            if dog.y + dog.height >= wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
-                if wall.x < dog.x + collision_offset and wall.x + wall.width > dog.x - collision_offset:
-                    dog.speed_left = 0
-                elif wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
-                    dog.speed_right = 0
 
-            elif dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
-                if dog.y + dog.height + collision_offset > wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
-                    dog.speed_down = 0
-                elif wall.y + wall.height > dog.y - collision_offset and wall.y < dog.y + cat.height:
-                    dog.speed_up = 0
+            for dog in dogs:
+                if dog.y + dog.height >= wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
+                    if wall.x < dog.x + collision_offset and wall.x + wall.width > dog.x - collision_offset:
+                        dog.speed_left = 0
+                    elif wall.x + wall.width > dog.x - collision_offset and wall.x < dog.x + dog.width + collision_offset:
+                        dog.speed_right = 0
+
+                elif dog.x + dog.width >= wall.x and dog.x <= wall.x + wall.width:
+                    if dog.y + dog.height + collision_offset > wall.y and dog.y + 15 * collision_offset < wall.y + wall.height:
+                        dog.speed_down = 0
+                    elif wall.y + wall.height > dog.y - collision_offset and wall.y < dog.y + cat.height:
+                        dog.speed_up = 0
             wall.draw()
+
+        for fish in fishes:
+            fish.eat_fish(stamina, cat)
+            fish.draw()
+
+        for dog in dogs:
+            dog.move(cat)
+            dog.draw(cat)
 
         #This will draw keys
         counter = 0
@@ -89,11 +103,9 @@ def main():
             if current == 1:
                 counter = counter + 1
                 if counter == 3:
-                    key.catch_em_all(dog)
+                    key.catch_em_all(dogs)
 
-        dog.move(cat)
         camera_pos = cat.move(camera_pos)
-        dog.draw(cat)
         cat.draw()
         stamina.drain()
 
@@ -106,13 +118,15 @@ def main():
         stamina.draw()
 
         # This checks to see if the player has lost
-        magnitude = math.sqrt((cat.x - dog.x) ** 2 + (cat.y - dog.y) ** 2)
-        if magnitude <= 40:
-            cont = cat.lose()
-            game_over = True
-        game_over = stamina.game_over(cat)
-        if game_over == True:
-            screen.blit(cat.game_over_scaled, (0, 0))
+        for dog in dogs:
+            magnitude = math.sqrt((cat.x - dog.x) ** 2 + (cat.y - dog.y) ** 2)
+            if magnitude <= 40:
+                game_over = cat.lose()
+            if game_over == True:
+                screen.blit(cat.game_over_scaled, (0, 0))
+            game_over = stamina.game_over(cat)
+            if game_over == True:
+                screen.blit(cat.game_over_scaled, (0, 0))
         pygame.display.flip()
 
 

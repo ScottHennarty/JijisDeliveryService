@@ -171,7 +171,6 @@ class Cat:
         return (pos_x, pos_y)
 
     def lose(self):
-        self.true_screen.blit(self.game_over_scaled, (0, 0))
         self.game_over_sound.play()
         return True
 

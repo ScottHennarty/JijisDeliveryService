@@ -6,6 +6,7 @@ import math
 class Stamina:
     def __init__(self, screen, width, height, speed):
         self.screen = screen
+        self.width_origional = width
         self.width = width
         self.height = height
         self.speed = speed

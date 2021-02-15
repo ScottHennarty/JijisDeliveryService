@@ -24,8 +24,9 @@ class Keys:
         return self.keys_collected
 
 
-    def catch_em_all(self, dog):
-            dog.radius = 1000
+    def catch_em_all(self, dogs):
+            for dog in dogs:
+                dog.radius = 1000
 
     def draw(self):
         if self.collected == False:
