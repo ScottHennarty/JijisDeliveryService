@@ -14,15 +14,15 @@ def main():
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
     world = pygame.Surface((1000, 1000))
+    game_over = False
+
 
     cat = Cat(world, screen)
     dog = Dog(world, 700, 200)
+    dog.speed_reset()
     #(x,y,width,height,(color))
-    walls = [Walls(world, 0, 200, 100, 300, (88, 88, 88), cat.speed),
+    walls = [Walls(world, 100, 200, 100, 300, (88, 88, 88), cat.speed),
              Walls(world, 800, 200, 100, 200, (88, 88, 88), cat.speed)]
-
-
-
     keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
             Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
             Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
@@ -109,9 +109,10 @@ def main():
         magnitude = math.sqrt((cat.x - dog.x) ** 2 + (cat.y - dog.y) ** 2)
         if magnitude <= 40:
             cont = cat.lose()
-            if cont == True:
-                screen.blit(cat.game_over_scaled, (0, 0))
-
+            game_over = True
+        game_over = stamina.game_over(cat)
+        if game_over == True:
+            screen.blit(cat.game_over_scaled, (0, 0))
         pygame.display.flip()
 
 

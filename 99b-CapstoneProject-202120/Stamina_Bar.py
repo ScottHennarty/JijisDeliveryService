@@ -19,11 +19,14 @@ class Stamina:
         pygame.draw.rect(self.screen, (0, 204, 0), (40, 700, self.width, self.height))
         self.screen.blit(self.caption1, (45, 670))
 
-
-
     def drain(self):
         if self.time_delayer % 7 == 0:
             self.time = self.time + 1
             if self.time % 2 == 0:
-                self.width = self.width - 1
+                self.width = self.width - self.speed
         self.time_delayer = self.time_delayer + 1
+
+    def game_over(self, cat):
+        if self.width <= 0:
+            cat.game_over_sound.play()
+            return True
