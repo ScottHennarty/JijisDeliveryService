@@ -28,7 +28,7 @@ class Positions:
              Walls(world, 1800, 1000, 50, 400, (88, 88, 88), cat.speed), Walls(world, screen_offset, 1000, 200, 50, (88, 88, 88), cat.speed),
              Walls(world, 700, 1000, 50, 400, (88, 88, 88), cat.speed), Walls(world, 1175, 1550, 50, 200, (88, 88, 88), cat.speed),
              Walls(world, 1375, 1550, 50, 200, (88, 88, 88), cat.speed), #I can't be bothered to fix this sorry!
-             Walls(world, 1375, 1700, 200, 50, (88, 88, 88), cat.speed), Walls(world, 1025, 1700, 200, 50, (88, 88, 88), cat.speed),
+             Walls(world, 1375, 1700, 175, 50, (88, 88, 88), cat.speed), Walls(world, 1050, 1700, 150, 50, (88, 88, 88), cat.speed),
              Walls(world, 900, 1550, 50, 200, (88, 88, 88), cat.speed), Walls(world, 1650, 1550, 50, 200, (88, 88, 88), cat.speed),
              Walls(world, 900, 1550, 175, 50, (88, 88, 88), cat.speed), Walls(world, 1525, 1550, 150, 50, (88, 88, 88), cat.speed),
              Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed), Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed),
