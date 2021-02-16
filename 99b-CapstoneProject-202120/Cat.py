@@ -145,7 +145,6 @@ class Cat:
         self.time_delayer = self.time_delayer + 1
 
     def move(self, camera_pos):
-        print(self.x, self.y)
         pos_x, pos_y = camera_pos
 
         self.x += self.speed_right

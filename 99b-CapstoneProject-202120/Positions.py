@@ -33,9 +33,11 @@ class Positions:
              Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed), Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed),
              Walls(world, 700, 1550, 50, 350, (88, 88, 88), cat.speed), Walls(world, 1075, 1850, 450, 50, (88, 88, 88), cat.speed),
              Walls(world, 750, 1850, 200, 50, (88, 88, 88), cat.speed), Walls(world, 1650, 1850, 200, 50, (88, 88, 88), cat.speed)]
-        self.dogs = [Dog(world, 700, 200), Dog(world, 700, 50)]
-        self.keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
-            Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),
-            Keys(world, 600, 450, "Keys/Key_3.png", cat.speed)]
-        self.fishes = [Fishes(world, 250, 450, 20), Fishes(world, 250, 500, 20),
-              Fishes(world, 250, 550, 20), Fishes(world, 250, 600, 20)]
+        self.dogs = [Dog(world, 0, 0), Dog(world, 1550, 900), Dog(world, 1275, 1600), Dog(world, 1700, 1925), Dog(world, 800, 800), Dog(world, 800, 1500),
+        Dog(world, 1275, 700)]
+        self.keys = [Keys(world, 1275, 575, "Keys/Key_1.png", cat.speed),
+            Keys(world, 600, 1100, "Keys/Key_2.png", cat.speed),
+            Keys(world, 1500, 1625, "Keys/Key_3.png", cat.speed)]
+        self.fishes = [Fishes(world, 1675, 1250, 20), Fishes(world, 1900, 600, 20),
+              Fishes(world, 1275, 900, 20), Fishes(world, 1700, 1775, 20), Fishes(world, 1000, 1925, 20),
+              Fishes(world, 800, 1650, 20)]

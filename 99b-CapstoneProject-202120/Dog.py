@@ -13,9 +13,10 @@ class Dog:
         self.time_delayer = 0
         self.one_or_two = 0
         self.radius = 200
+        self.speed = 1.5
+        self.speed_reset()
         self.screen_width = screen.get_width()
         self.screen_height = screen.get_height()
-        self.speed = 1.5
         self.images()
         self.width = 70
         self.height = 65

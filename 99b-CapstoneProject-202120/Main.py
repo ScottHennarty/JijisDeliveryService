@@ -12,6 +12,7 @@ from Positions import *
 
 def main():
     pygame.init()
+    pygame.mixer.music.stop()
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
