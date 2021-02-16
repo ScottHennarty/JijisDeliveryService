@@ -173,6 +173,7 @@ class Cat:
     def play_game_over(self):
         pygame.mixer.music.load("Sounds/Undertale Game Over Theme.wav")
         pygame.mixer.music.play()
+        return False
 
 
 

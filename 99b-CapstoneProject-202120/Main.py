@@ -10,10 +10,12 @@ from Stamina_Bar import *
 from Fish import *
 from Positions import *
 
-def main():
+def main(playing_background):
     pygame.init()
-    pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
-    pygame.mixer.music.play()
+    if playing_background == False:
+        playing_background = True
+        pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
+        pygame.mixer.music.play(-1)
     pygame.display.set_caption("Jiji's Delivery Service ")
     # pygame.mixer.music.load("drums.wav")
     screen = pygame.display.set_mode((1000, 800))
@@ -60,7 +62,7 @@ def main():
             if pressed_keys[pygame.K_DOWN]:
                 cat.speed_down = cat.speed
         if pressed_keys[pygame.K_SPACE]:
-            main()
+            main(playing_background)
 
         #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
@@ -137,9 +139,11 @@ def main():
                 screen.blit(cat.game_over_scaled, (0, 0))
                 if iterations != 1:
                     iterations = 1
-                    cat.play_game_over()
+                    playing_background = cat.play_game_over()
         pygame.display.flip()
 
-
-
-main()
+pygame.init()
+pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
+pygame.mixer.music.play(-1)
+playing_background = True
+main(playing_background)
