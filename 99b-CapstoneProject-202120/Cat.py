@@ -60,7 +60,7 @@ class Cat:
 
     def draw(self):
         pressed_keys = pygame.key.get_pressed()
-        # print(self.x, self.y)
+        #print(self.x, self.y)   #This is for watching pos
         if pressed_keys[pygame.K_RIGHT]:
             self.walk_right()
             self.last_pressed = "Right"

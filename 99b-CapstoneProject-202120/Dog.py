@@ -12,7 +12,7 @@ class Dog:
         self.time = 0
         self.time_delayer = 0
         self.one_or_two = 0
-        self.radius = 200
+        self.radius = 250
         self.speed = 1.5
         self.speed_reset()
         self.screen_width = screen.get_width()

@@ -11,8 +11,9 @@ from Fish import *
 # from Main import *
 #screen, x, y, width, height, color, speed
 class Positions:
-    def __init__(self, world, screen, screen_offset, walking_space, cat):
+    def __init__(self, world, screen, screen_offset, walking_space, cat, regen):
         self.world = world
+        self.regen = regen
         self.walls = [Walls(world, screen_offset, screen_offset, 50, world.get_height() - 2 * screen_offset, (88, 88, 88), cat.speed),
              Walls(world, screen_offset, screen_offset, world.get_width() - 2 * screen_offset, 50, (88, 88, 88), cat.speed),
              Walls(world, world.get_width() - screen_offset, screen_offset, 50, world.get_height() - 2 * screen_offset + 50, (88, 88, 88), cat.speed),
@@ -38,6 +39,6 @@ class Positions:
         self.keys = [Keys(world, 1275, 575, "Keys/Key_1.png", cat.speed),
             Keys(world, 600, 1100, "Keys/Key_2.png", cat.speed),
             Keys(world, 1500, 1625, "Keys/Key_3.png", cat.speed)]
-        self.fishes = [Fishes(world, 1675, 1250, 20), Fishes(world, 1900, 600, 20),
-              Fishes(world, 1275, 900, 20), Fishes(world, 1700, 1775, 20), Fishes(world, 1000, 1925, 20),
-              Fishes(world, 800, 1650, 20)]
+        self.fishes = [Fishes(world, 1675, 1250, self.regen), Fishes(world, 1900, 600, self.regen),
+              Fishes(world, 1275, 900, self.regen), Fishes(world, 1700, 1775, self.regen), Fishes(world, 1000, 1925, self.regen),
+              Fishes(world, 800, 1650, self.regen)]

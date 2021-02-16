@@ -13,15 +13,17 @@ from Positions import *
 def main():
     pygame.init()
     pygame.display.set_caption("Jiji's Delivery Service ")
+    # pygame.mixer.music.load("drums.wav")
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
     world = pygame.Surface((2500, 2500))
     game_over = False
     screen_offset = 500
     walking_space = 100
+    regen = 50
 
     cat = Cat(world, screen)
-    positions = Positions(world, screen, screen_offset, walking_space, cat)
+    positions = Positions(world, screen, screen_offset, walking_space, cat, regen)
     dogs = positions.dogs
     for dog in dogs:
         dog.speed_reset()
@@ -29,7 +31,7 @@ def main():
     walls = positions.walls
     keys = positions.keys
     fishes = positions.fishes
-    stamina = Stamina(screen, 400, 40, 5)
+    stamina = Stamina(screen, 400, 40, 2)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
     collision_offset = 5
@@ -70,6 +72,8 @@ def main():
                 elif wall.y + wall.height > cat.y - collision_offset and wall.y < cat.y + cat.height:
                     cat.speed_up = 0
 
+            #Drawing winning square
+            pygame.draw.rect(world, (153, 255, 153), (1150, 1050, 300, 150))
 
             for dog in dogs:
                 if dog.y + dog.height >= wall.y and dog.y + dog.height // 2 <= wall.y + wall.height:
@@ -103,6 +107,8 @@ def main():
                 counter = counter + 1
                 if counter == 3:
                     key.catch_em_all(dogs)
+                    if cat.x > 1150 and cat.x < 1450 and cat.y > 1050 and cat.y < 1150:
+                        main()
 
         camera_pos = cat.move(camera_pos)
         cat.draw()
