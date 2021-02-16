@@ -13,7 +13,6 @@ from Positions import *
 def main(playing_background):
     pygame.init()
     if playing_background == False:
-        playing_background = True
         pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
         pygame.mixer.music.play(-1)
     pygame.display.set_caption("Jiji's Delivery Service ")
@@ -40,7 +39,6 @@ def main(playing_background):
     stamina = Stamina(screen, 400, 40, 2)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
-
 
     while True:
         world.fill((204, 255, 255))
