@@ -171,7 +171,7 @@ class Cat:
         return (pos_x, pos_y)
 
     def play_game_over(self):
-        pygame.mixer.music.load("Sounds/Undertale Game Over Theme.wav")
+        pygame.mixer.music.load("Sounds/Kiki's Delivery Service - Flying Express Delivery Service Music Box.wav")
         pygame.mixer.music.play()
         return False
 

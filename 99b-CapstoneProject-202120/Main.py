@@ -112,7 +112,7 @@ def main(playing_background):
                 if counter == 3:
                     key.catch_em_all(dogs)
                     if cat.x > 1150 and cat.x < 1450 and cat.y > 1050 and cat.y < 1150:
-                        main()
+                        main(playing_background)
 
         camera_pos = cat.move(camera_pos)
         cat.draw()
