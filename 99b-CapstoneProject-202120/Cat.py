@@ -56,7 +56,6 @@ class Cat:
         self.backward_3_scaled = pygame.transform.scale(self.backward_3, (60, 50))
         self.game_over =  pygame.image.load("Game Over.jpg")
         self.game_over_scaled = pygame.transform.scale(self.game_over, (1000, 800))
-        self.game_over_sound = pygame.mixer.Sound("Sounds/Undertale Game Over Theme.wav")
 
     def draw(self):
         pressed_keys = pygame.key.get_pressed()
@@ -171,9 +170,10 @@ class Cat:
         #     pos_y = camera_pos[1]
         return (pos_x, pos_y)
 
-    def lose(self):
-        self.game_over_sound.play()
-        return True
+    def play_game_over(self):
+        pygame.mixer.music.load("Sounds/Undertale Game Over Theme.wav")
+        pygame.mixer.music.play()
+
 
 
 

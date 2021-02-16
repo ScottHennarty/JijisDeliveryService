@@ -12,6 +12,8 @@ from Positions import *
 
 def main():
     pygame.init()
+    pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
+    pygame.mixer.music.play()
     pygame.display.set_caption("Jiji's Delivery Service ")
     # pygame.mixer.music.load("drums.wav")
     screen = pygame.display.set_mode((1000, 800))
@@ -21,6 +23,8 @@ def main():
     screen_offset = 500
     walking_space = 100
     regen = 50
+    collision_offset = 5
+    iterations = 0
 
     cat = Cat(world, screen)
     positions = Positions(world, screen, screen_offset, walking_space, cat, regen)
@@ -34,10 +38,10 @@ def main():
     stamina = Stamina(screen, 400, 40, 2)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
-    collision_offset = 5
+
 
     while True:
-        world.fill((255, 255, 255))
+        world.fill((204, 255, 255))
         clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,7 +50,7 @@ def main():
         # The function here will set the cat speed depending on if the cat is
         # hitting a wall
         pressed_keys = pygame.key.get_pressed()
-        if game_over == None:
+        if game_over == False:
             if pressed_keys[pygame.K_RIGHT]:
                 cat.speed_right = cat.speed
             if pressed_keys[pygame.K_LEFT]:
@@ -55,8 +59,8 @@ def main():
                 cat.speed_up = cat.speed
             if pressed_keys[pygame.K_DOWN]:
                 cat.speed_down = cat.speed
-            if pressed_keys[pygame.K_SPACE]:
-                main()
+        if pressed_keys[pygame.K_SPACE]:
+            main()
 
         #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
@@ -126,12 +130,14 @@ def main():
         for dog in dogs:
             magnitude = math.sqrt((cat.x - dog.x) ** 2 + (cat.y - dog.y) ** 2)
             if magnitude <= 40:
-                game_over = cat.lose()
+                game_over = True
+            if stamina.width <= 0:
+                game_over = True
             if game_over == True:
                 screen.blit(cat.game_over_scaled, (0, 0))
-            game_over = stamina.game_over(cat)
-            if game_over == True:
-                screen.blit(cat.game_over_scaled, (0, 0))
+                if iterations != 1:
+                    iterations = 1
+                    cat.play_game_over()
         pygame.display.flip()
 
 
