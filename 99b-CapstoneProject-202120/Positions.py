@@ -24,13 +24,15 @@ class Positions:
              Walls(world, 700, 700, 200, 50, (88, 88, 88), cat.speed), Walls(world, 1650, 700, 200, 50, (88, 88, 88), cat.speed),
              Walls(world, 1800, 700, 50, 200, (88, 88, 88), cat.speed), Walls(world, 1150, 500, 50, 150, (88, 88, 88), cat.speed),
              Walls(world, 1400, 500, 50, 150, (88, 88, 88), cat.speed), Walls(world, 1800, 1000, 200, 50, (88, 88, 88), cat.speed),
-             Walls(world, 1800, 1000, 50, 400, (88, 0, 88), cat.speed), Walls(world, screen_offset, 1000, 200, 50, (88, 88, 88), cat.speed),
+             Walls(world, 1800, 1000, 50, 400, (88, 88, 88), cat.speed), Walls(world, screen_offset, 1000, 200, 50, (88, 88, 88), cat.speed),
              Walls(world, 700, 1000, 50, 400, (88, 88, 88), cat.speed), Walls(world, 1175, 1550, 50, 200, (88, 88, 88), cat.speed),
              Walls(world, 1375, 1550, 50, 200, (88, 88, 88), cat.speed), #I can't be bothered to fix this sorry!
              Walls(world, 1375, 1700, 200, 50, (88, 88, 88), cat.speed), Walls(world, 1025, 1700, 200, 50, (88, 88, 88), cat.speed),
              Walls(world, 900, 1550, 50, 200, (88, 88, 88), cat.speed), Walls(world, 1650, 1550, 50, 200, (88, 88, 88), cat.speed),
              Walls(world, 900, 1550, 175, 50, (88, 88, 88), cat.speed), Walls(world, 1525, 1550, 150, 50, (88, 88, 88), cat.speed),
-             Walls(world, 1800, 1550, 50, 350, (88, 0, 88), cat.speed)]
+             Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed), Walls(world, 1800, 1550, 50, 350, (88, 88, 88), cat.speed),
+             Walls(world, 700, 1550, 50, 350, (88, 88, 88), cat.speed), Walls(world, 1075, 1850, 450, 50, (88, 88, 88), cat.speed),
+             Walls(world, 750, 1850, 200, 50, (88, 88, 88), cat.speed), Walls(world, 1650, 1850, 200, 50, (88, 88, 88), cat.speed)]
         self.dogs = [Dog(world, 700, 200), Dog(world, 700, 50)]
         self.keys = [Keys(world, 400, 450, "Keys/Key_1.png", cat.speed),
             Keys(world, 500, 450, "Keys/Key_2.png", cat.speed),

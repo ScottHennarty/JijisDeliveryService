@@ -29,7 +29,7 @@ def main():
     walls = positions.walls
     keys = positions.keys
     fishes = positions.fishes
-    stamina = Stamina(screen, 400, 40, 1)
+    stamina = Stamina(screen, 400, 40, 5)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
 
