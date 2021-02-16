@@ -12,7 +12,6 @@ from Positions import *
 
 def main():
     pygame.init()
-    pygame.mixer.music.stop()
     pygame.display.set_caption("Jiji's Delivery Service ")
     screen = pygame.display.set_mode((1000, 800))
     clock = pygame.time.Clock()
@@ -33,7 +32,6 @@ def main():
     stamina = Stamina(screen, 400, 40, 5)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
-
     collision_offset = 5
 
     while True:
@@ -46,17 +44,17 @@ def main():
         # The function here will set the cat speed depending on if the cat is
         # hitting a wall
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_RIGHT]:
-            cat.speed_right = cat.speed
-        if pressed_keys[pygame.K_LEFT]:
-            cat.speed_left = cat.speed
-        if pressed_keys[pygame.K_UP]:
-            cat.speed_up = cat.speed
-        if pressed_keys[pygame.K_DOWN]:
-            cat.speed_down = cat.speed
-        if pressed_keys[pygame.K_SPACE]:
-            main()
-
+        if game_over == None:
+            if pressed_keys[pygame.K_RIGHT]:
+                cat.speed_right = cat.speed
+            if pressed_keys[pygame.K_LEFT]:
+                cat.speed_left = cat.speed
+            if pressed_keys[pygame.K_UP]:
+                cat.speed_up = cat.speed
+            if pressed_keys[pygame.K_DOWN]:
+                cat.speed_down = cat.speed
+            if pressed_keys[pygame.K_SPACE]:
+                main()
 
         #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
@@ -94,6 +92,7 @@ def main():
         for dog in dogs:
             dog.move(cat)
             dog.draw(cat)
+            dog.speed_reset()
 
         #This will draw keys
         counter = 0
@@ -112,7 +111,7 @@ def main():
         # Reseting speed values
         # pygame.display.update()
         cat.speed_reset()
-        dog.speed_reset()
+
 
         screen.blit(world, camera_pos)
         stamina.draw()
