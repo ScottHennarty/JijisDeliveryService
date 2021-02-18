@@ -12,11 +12,13 @@ class Fishes:
         self.image = pygame.image.load("Sturgeon.png")
         self.image_scaled = pygame.transform.scale(self.image, (40, 45))
         self.eaten = False
+        self.eating_sound = pygame.mixer.Sound("Sounds/Eating Sound.wav")
 
     def eat_fish(self, stamina, cat):
         if self.eaten == False:
             distance = math.sqrt((self.x - cat.x) ** 2 + (self.y - cat.y) ** 2)
             if distance <= 45:
+                self.eating_sound.play()
                 self.eaten = True
                 stamina.width = stamina.width + self.refill
                 if stamina.width > stamina.width_origional:

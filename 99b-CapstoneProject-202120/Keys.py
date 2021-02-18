@@ -14,11 +14,13 @@ class Keys:
         self.speed = speed
         self.keys_collected = 0
         self.collected = False
+        self.grab_key = pygame.mixer.Sound("Sounds/Grab_Item.wav")
 
     def collect_key(self, cat):
         if self.collected == False:
             distance = math.sqrt((self.x - cat.x) ** 2 + (self.y - cat.y) ** 2)
             if distance <= 45:
+                self.grab_key.play()
                 self.collected = True
                 self.keys_collected = 1
         return self.keys_collected

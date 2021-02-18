@@ -12,7 +12,7 @@ class Dog:
         self.time = 0
         self.time_delayer = 0
         self.one_or_two = 0
-        self.radius = 10
+        self.radius = 100
         self.speed = 1.25
         self.speed_reset()
         self.screen_width = screen.get_width()
@@ -20,6 +20,7 @@ class Dog:
         self.images()
         self.width = 70
         self.height = 65
+        self.bark = 0
 
     def speed_reset(self):
         self.speed_right = self.speed
@@ -56,6 +57,7 @@ class Dog:
         self.backward_2_scaled = pygame.transform.scale(self.backward_2, (60, 50))
         self.backward_3 = pygame.image.load("New Perro/Dog_Backward_3.png")
         self.backward_3_scaled = pygame.transform.scale(self.backward_3, (60, 50))
+        self.bark_sound = pygame.mixer.Sound("Sounds/Dog Bark.wav")
 
 
     def draw(self, cat):
@@ -132,6 +134,12 @@ class Dog:
                 self.y = self.y + self.speed_down
             if distance_y < 5:
                 self.y = self.y - self.speed_up
+            self.bark = self.bark + 1
+            if self.bark == 1:
+                self.bark = 2
+                self.bark_sound.play()
+        else:
+            self.bark = 0
 
 
 
