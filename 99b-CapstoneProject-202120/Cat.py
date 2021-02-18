@@ -59,7 +59,7 @@ class Cat:
 
     def draw(self):
         pressed_keys = pygame.key.get_pressed()
-        print(self.x, self.y)   #This is for watching pos
+        #print(self.x, self.y)   #This is for watching pos
         if pressed_keys[pygame.K_RIGHT]:
             self.walk_right()
             self.last_pressed = "Right"
@@ -171,7 +171,7 @@ class Cat:
         return (pos_x, pos_y)
 
     def play_game_over(self):
-        pygame.mixer.music.load("Sounds/Kiki's Delivery Service - Flying Express Delivery Service Music Box.wav")
+        pygame.mixer.music.load("Sounds/Kiki_Loose_Sound.wav")
         pygame.mixer.music.play()
         return False
 
