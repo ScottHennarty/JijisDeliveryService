@@ -53,9 +53,9 @@ class Positions:
                     self.dog_positions[dog_place].x = 0
             self.dogs = self.dogs + [self.dog_positions_ref[dog_place]]
         #displays all dogs
-            self.dogs = [Dog(world, 1550, 900), Dog(world, 1000, 900), Dog(world, 800, 1450), Dog(world, 1700, 1450),
-                     Dog(world, 1900, 750), Dog(world, 600, 750), Dog(world, 1275, 700), Dog(world, 600, 1875), Dog(world, 1900, 1875),
-                     Dog(world, 1275, 1600), Dog(world, 1450, 1900), Dog(world, 1075, 1900), Dog(world, 775, 1075), Dog(world, 1725, 1075)]
+            # self.dogs = [Dog(world, 1550, 900), Dog(world, 1000, 900), Dog(world, 800, 1450), Dog(world, 1700, 1450),
+            #          Dog(world, 1900, 750), Dog(world, 600, 750), Dog(world, 1275, 700), Dog(world, 600, 1875), Dog(world, 1900, 1875),
+            #          Dog(world, 1275, 1600), Dog(world, 1450, 1900), Dog(world, 1075, 1900), Dog(world, 775, 1075), Dog(world, 1725, 1075)]
 
 
         self.keys = [Keys(world, 0, 0, "Keys/Key_1.png", cat.speed),
@@ -63,19 +63,27 @@ class Positions:
             Keys(world, 0, 0, "Keys/Key_3.png", cat.speed)]
         self.key_position_x_ref = [600, 1900, 1500, 1000, 1275, 600, 1900]
         self.key_position_y_ref = [1100, 1100, 1625, 1625, 575, 600, 600]
-        self.key_position_x = [600, 1900, 1500, 1000, 1275, 600, 1900]
+        self.key_available = [1, 1, 1, 1, 1, 1, 1]
         for k in range(3):
             key_passed = False
             while key_passed == False:
-                key_place = random.randint(0, len(self.key_position_x) - 1)
-                if self.key_position_x[key_place] != 0:
+                key_place = random.randint(0, len(self.key_available) - 1)
+                if self.key_available[key_place] != 0:
                     key_passed = True
-                    self.key_position_x[key_place] = 0
-                    print(self.keys[1].x)
+                    self.key_available[key_place] = 0
             self.keys[k].x = self.key_position_x_ref[key_place]
             self.keys[k].y = self.key_position_y_ref[key_place]
 
-
-        self.fishes = [Fishes(world, 1675, 1250, self.regen), Fishes(world, 1900, 600, self.regen),
-              Fishes(world, 1275, 900, self.regen), Fishes(world, 1700, 1775, self.regen), Fishes(world, 1000, 1925, self.regen),
-              Fishes(world, 800, 1650, self.regen)]
+        self.fishes = []
+        self.fish_position_x_ref = [1650, 900, 600, 1900, 1275, 800, 1700, 1275, 1275, 800, 1725, 1550, 1000]
+        self.fish_position_y_ref = [1250, 1250, 1450, 1450, 900, 800, 800, 1450, 1775, 1650, 1650, 1925, 1925]
+        self.fish_available = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        for f in range(fish_num):
+            fish_passed = False
+            while fish_passed == False:
+                fish_place = random.randint(0, len(self.fish_available) - 1)
+                print(fish_place)
+                if self.fish_available[fish_place] != 0:
+                    fish_passed = True
+                    self.fish_available[fish_place] = 0
+            self.fishes = self.fishes + [Fishes(world, self.fish_position_x_ref[fish_place], self.fish_position_y_ref[fish_place], self.regen)]
