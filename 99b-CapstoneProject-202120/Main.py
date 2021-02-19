@@ -115,6 +115,7 @@ def main(playing_background, dog_num, regen, level):
                         if level <= 5:
                             dog_num = dog_num + 1
                             regen = regen - 5
+                        key.next_level.play()
                         main(playing_background, dog_num, regen, level)
 
         camera_pos = cat.move(camera_pos)

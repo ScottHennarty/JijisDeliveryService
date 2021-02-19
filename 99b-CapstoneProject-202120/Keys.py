@@ -15,6 +15,7 @@ class Keys:
         self.keys_collected = 0
         self.collected = False
         self.grab_key = pygame.mixer.Sound("Sounds/Grab_Item.wav")
+        self.next_level = pygame.mixer.Sound("Sounds/Zelda_Sound.wav")
 
     def collect_key(self, cat):
         if self.collected == False:
