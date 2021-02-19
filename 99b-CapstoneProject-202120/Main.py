@@ -10,7 +10,7 @@ from Stamina_Bar import *
 from Fish import *
 from Positions import *
 
-def main(playing_background, dog_num, fish_num):
+def main(playing_background, dog_num, fish_num, level):
     pygame.init()
     if playing_background == False:
         pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
@@ -36,7 +36,7 @@ def main(playing_background, dog_num, fish_num):
     walls = positions.walls
     keys = positions.keys
     fishes = positions.fishes
-    stamina = Stamina(screen, 400, 40, 2)
+    stamina = Stamina(screen, 400, 40, 2, level)
 
     camera_pos = (-cat.x + (screen.get_width() // 2), -cat.y + (screen.get_height() // 2))
 
@@ -60,7 +60,7 @@ def main(playing_background, dog_num, fish_num):
             if pressed_keys[pygame.K_DOWN]:
                 cat.speed_down = cat.speed
         if pressed_keys[pygame.K_SPACE]:
-            main(playing_background, dog_num, fish_num)
+            main(playing_background, dog_num, fish_num, 1)
 
         #If I'm correct this is reponsible for stopping the wall if we walk into it
         for wall in walls:
@@ -112,7 +112,8 @@ def main(playing_background, dog_num, fish_num):
                 if counter == 3:
                     key.catch_em_all(dogs)
                     if cat.x > 1150 and cat.x < 1450 and cat.y > 1050 and cat.y < 1150:
-                        main(playing_background, dog_num, fish_num)
+                        level = level + 1
+                        main(playing_background, dog_num, fish_num, level)
 
         camera_pos = cat.move(camera_pos)
         cat.draw()
@@ -146,4 +147,5 @@ pygame.mixer.music.play(-1)
 playing_background = True
 dog_num = 5
 fish_num = 7
-main(playing_background, dog_num, fish_num)
+level = 1
+main(playing_background, dog_num, fish_num, level)
