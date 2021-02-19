@@ -82,7 +82,6 @@ class Positions:
             fish_passed = False
             while fish_passed == False:
                 fish_place = random.randint(0, len(self.fish_available) - 1)
-                print(fish_place)
                 if self.fish_available[fish_place] != 0:
                     fish_passed = True
                     self.fish_available[fish_place] = 0
