@@ -15,6 +15,7 @@ def main(playing_background, dog_num, regen, level):
     if playing_background == False:
         pygame.mixer.music.load("Sounds/Kikis Delivery Service - A Town With An Ocean View - Main Theme.wav")
         pygame.mixer.music.play(-1)
+        playing_background = True
     pygame.display.set_caption("Jiji's Delivery Service ")
     # pygame.mixer.music.load("drums.wav")
     screen = pygame.display.set_mode((1000, 800))
@@ -45,7 +46,6 @@ def main(playing_background, dog_num, regen, level):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-
         # The function here will set the cat speed depending on if the cat is
         # hitting a wall
         pressed_keys = pygame.key.get_pressed()
@@ -115,7 +115,7 @@ def main(playing_background, dog_num, regen, level):
                         if level <= 5:
                             dog_num = dog_num + 1
                             regen = regen - 5
-                            main(playing_background, dog_num, regen, level)
+                        main(playing_background, dog_num, regen, level)
 
         camera_pos = cat.move(camera_pos)
         cat.draw()
