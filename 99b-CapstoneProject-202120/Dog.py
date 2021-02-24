@@ -114,9 +114,9 @@ class Dog:
             return
         else:
             if cat.x - self.x > 0:
-                    self.screen.blit(self.standing_right_1_scaled, (self.x, self.y))
+                self.screen.blit(self.standing_right_1_scaled, (self.x, self.y))
             else:
-                    self.screen.blit(self.standing_left_1_scaled, (self.x, self.y))
+                self.screen.blit(self.standing_left_1_scaled, (self.x, self.y))
 
 
 
